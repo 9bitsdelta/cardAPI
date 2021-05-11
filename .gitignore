@@ -1,0 +1,6 @@
+*.odt
+*.pdf
+compile_commands.json
+.*/
+cmake-build-debug/
+yEd-flowcharts/
