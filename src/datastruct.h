@@ -51,7 +51,7 @@ typedef struct STACK {
 /*
  *  Heap allocates a new, empty list.
  */
-stack_t* make_list();
+stack_t* make_stack();
 
 /*
  *  Adds a node to the list before the first
@@ -72,9 +72,15 @@ node_t* pop(stack_t* l);
 void for_each(stack_t* l, void(*fun)(node_t*));
 
 /*
- *
+ *  Search the list for a certain node and return it.
+ *  The element is selected according to the criteria function.
+ *  If no element is found, the function returns a null pointer.
+ *  The prototype of the criteria function is
+ *  int crit(node_t*);
+ *  The function must return `1`, if the criteria were satisfied,
+ *  and must return `0` otherwise.
  */
-node_t* find(stack_t* l, int(*fun)(node_t*));
+node_t* find(stack_t* l, int(*crit)(node_t*));
 
 /*
  *  Frees all the memory allocated for the list

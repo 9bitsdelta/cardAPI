@@ -27,38 +27,48 @@
 #include "datastruct.h"
 
 /*
- *  Get the numeric suit of a playing card
+ *  Get the numeric suit of a playing card.
  */
 unsigned short suit(node_t* p);
 
 /*
- *  Get the numeric face of a playing card
+ *  Get the numeric face of a playing card.
  */
 unsigned short face(node_t* p);
 
 /*
- *  Get the text suit of a playing card
+ *  Get the text suit of a playing card.
  */
 const char* text_suit(node_t* p);
 
 /*
- *  Get the text face of a playing card
+ *  Get the text face of a playing card.
  */
 const char* text_face(node_t* p);
 
 /*
- *  Print card to stdout
+ *  Print card to stdout.
  */
 void pcard(node_t* p);
 
 /*
- *  Generate an already shuffled deck
+ *  Generate a sorted 52-card deck.
  */
 stack_t* sorted_deck();
 
 /*
- * Generate a deck with only the cards from 7 to aces
+ *  Generate a shuffled 52-card deck;
+ */
+stack_t* shuffled_deck();
+
+/*
+ *  Generate a sorted 32-card deck with only the cards from 7 to aces.
  */
 stack_t* small_deck();
+
+/*
+ *  Generate a shuffled 32-card deck with only the cards from 7 to aces.
+ */
+stack_t* ssmall_deck();
 
 #endif //CARDS_H

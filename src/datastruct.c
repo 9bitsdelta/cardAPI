@@ -14,7 +14,7 @@ node_t* make_node(unsigned short i)
     return p;
 }
 
-stack_t* make_list()
+stack_t* make_stack()
 {
     stack_t* l;
 
@@ -61,6 +61,15 @@ void for_each(stack_t* l, void(*fun)(node_t*))
     {
         (*fun)(p);
     }
+}
+
+node_t* find(stack_t* l, int(*crit)(node_t*))
+{
+    for(node_t* p = l->top; p != NULL; p = p->next)
+    {
+        if( (*crit)(p) ) return p;
+    }
+    return NULL;
 }
 
 void free_list(stack_t* l)

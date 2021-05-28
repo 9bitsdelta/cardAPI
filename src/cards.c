@@ -1,10 +1,12 @@
 /*
- *  game.c
+ *  cards.c
  */
 
 #include "cards.h"
 
 #include <stdio.h>
+#include <stdalign.h>
+#include <time.h>
 
 unsigned short suit(node_t* p)
 {
@@ -75,7 +77,7 @@ void pcard(node_t* p)
 
 stack_t* sorted_deck()
 {
-    stack_t* deck = make_list();
+    stack_t* deck = make_stack();
 
     for(int i=0; i<52; i++)
     {
@@ -85,9 +87,39 @@ stack_t* sorted_deck()
     return deck;
 }
 
+stack_t* shuffled_deck()
+{
+    stack_t* deck = make_stack();
+
+    int card[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8,
+                   9, 10, 11, 12, 13, 14, 15,
+                   16, 17, 18, 19, 20, 21, 22,
+                   23, 24, 25, 26, 27, 28, 29,
+                   30, 31, 32, 33, 34, 35, 36,
+                   37, 38, 39, 40, 41, 42, 43,
+                   44, 45, 46, 47, 48, 49, 50,
+                   51 };
+
+    // Initialize seed randomly
+    srand(time(0));
+
+    for (int i=0; i<52 ;i++) {
+        // Random for remaining positions.
+        int r = i + (rand() % (52 - i));
+
+        int temp = card[i];
+        card[i] = card[r];
+        card[r] = temp;
+
+        push(deck, make_node(card[i]));
+    }
+
+    return deck;
+}
+
 stack_t* small_deck()
 {
-    stack_t* deck = make_list();
+    stack_t* deck = make_stack();
 
     for(int i = FACE_7; i < (1 + SUIT_C) * 13; i++)
     {
@@ -104,4 +136,28 @@ stack_t* small_deck()
     return deck;
 }
 
+stack_t* ssmall_deck()
+{
+    stack_t* deck = make_stack();
 
+    int card[] = {  5,  6,  7,  8,  9, 10, 11, 12,
+                   18, 19, 20, 21, 22, 23, 24, 25,
+                   31, 32, 33, 34, 35, 36, 37, 38,
+                   44, 45, 46, 47, 48, 49, 50, 51 };
+
+    // Initialize seed randomly
+    srand(time(0));
+
+    for (int i=0; i<32 ;i++) {
+        // Random for remaining positions.
+        int r = i + (rand() % (32 - i));
+
+        int temp = card[i];
+        card[i] = card[r];
+        card[r] = temp;
+
+        push(deck, make_node(card[i]));
+    }
+
+    return deck;
+}
